@@ -1,30 +1,37 @@
 import './App.css'
-import { MButton } from './components/global'
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Loader } from './components/loader'
+import { Home, OurServices, Gallery } from './pages'
 
 function App() {
-  function handleButtonClick() {
-    alert('Button clicked!')
+  const [isLoading, setIsLoading] = useState(true);
+ 
+
+  function handleLoadingComplete() {
+    setIsLoading(false);
   }
 
-  // TODO: For now this is a demo of MButton component
-  // Delete everything inside of return function as well as handleButtonClick function and start this page from scratch
-  // We need to handle routing of the application in this file with react-router-dom
-  
+  // If still in initial loading state, show the loader
+  if (isLoading) {
+    return <Loader onLoadingComplete={handleLoadingComplete} />;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-8 p-4">
-      <h1 className='text-3xl font-bold underline'>Mpower</h1>
-      
-      <div className="flex flex-col gap-4 items-center">
-        <h2 className="text-xl">MButton Component Demo</h2>
-        <p>This button component can be found at /components/global/MButton.tsx</p>
-        <p>Button accepts 2 props: text and onClick (function that will be called when button is clicked)</p>
-        <MButton 
-          text="Order Now" 
-          onClick={() => handleButtonClick()} 
-        />
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* Define your routes here */}
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<OurServices />} />
+        <Route path="/about" element={<Gallery />} />
+        
+        {/* Add more routes as needed */}
+        
+        {/* Catch-all route - redirect to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App

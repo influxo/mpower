@@ -1,0 +1,8 @@
+This is where all the components that will be used inside multiple pages should be generated
+
+If one component will be used in multiple pages, it should be placed inside the global directory
+If not, it should be placed inside the directory of the page it will be used in
+
+TODO: Create Navbar, Footer, Hero, Mbutton, and the MLines (3 lines that are diagonal and that will be used inside every page)
+If you see the need of generating other components that need to be used in multiple pages other than the ones mentioned,
+feel free to generate them here

@@ -22,6 +22,10 @@ const Loader = ({ onLoadingComplete }: LoaderProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   
+  // Track when each segment should start filling
+  const [secondSegmentActive, setSecondSegmentActive] = useState(false);
+  const [thirdSegmentActive, setThirdSegmentActive] = useState(false);
+  
   // Array of car brand logos
   const carLogos = [
     { src: bmwLogo, alt: 'BMW Logo' },
@@ -57,7 +61,7 @@ const Loader = ({ onLoadingComplete }: LoaderProps) => {
       // Schedule next logo change
       timeoutId = window.setTimeout(() => {
         changeLogoWithDelay(index + 1);
-      }, 120);
+      }, 180);
     };
     
     // Start the logo animation sequence with a short delay
@@ -73,50 +77,77 @@ const Loader = ({ onLoadingComplete }: LoaderProps) => {
     };
   }, [carLogos.length, onLoadingComplete]);
 
+  // Monitor progress and activate segments with delays
+  useEffect(() => {
+    // Define the segment boundaries
+    const FIRST_SEGMENT_END = 33;
+    const SECOND_SEGMENT_END = 66;
+    
+    // When first segment completes, activate second segment after delay
+    if (progress > FIRST_SEGMENT_END && !secondSegmentActive) {
+      const timer = setTimeout(() => {
+        setSecondSegmentActive(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+    
+    // When second segment completes, activate third segment after delay
+    if (progress > SECOND_SEGMENT_END && !thirdSegmentActive) {
+      const timer = setTimeout(() => {
+        setThirdSegmentActive(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [progress, secondSegmentActive, thirdSegmentActive]);
+
   // Get current logo
   const currentLogo = carLogos[currentLogoIndex];
   
-  // Calculate the circle circumference and stroke-dasharray values
-  const radius = 70; // Radius of the circle
-  const circumference = 2 * Math.PI * radius;
-  
   // Define the segment boundaries
-  const FIRST_SEGMENT_END = 33.33;
-  const SECOND_SEGMENT_END = 66.66;
+  const FIRST_SEGMENT_END = 33;
+  const SECOND_SEGMENT_END = 66;
   
   // Calculate which segment is active and its progress
-  let activeSegment = 1; // Start with segment 1
-  let activeSegmentProgress = 0;
+  let firstSegmentProgress = 0;
+  let secondSegmentProgress = 0;
+  let thirdSegmentProgress = 0;
   
   if (progress <= FIRST_SEGMENT_END) {
-    // First segment is active (0-33.33%)
-    activeSegment = 1;
-    activeSegmentProgress = progress / FIRST_SEGMENT_END; // Scale to 0-1 for this segment
-  } else if (progress <= SECOND_SEGMENT_END) {
-    // Second segment is active (33.33-66.66%)
-    activeSegment = 2;
-    activeSegmentProgress = (progress - FIRST_SEGMENT_END) / (SECOND_SEGMENT_END - FIRST_SEGMENT_END); // Scale to 0-1
+    // Only first segment is active
+    firstSegmentProgress = progress / FIRST_SEGMENT_END;
   } else {
-    // Third segment is active (66.66-100%)
-    activeSegment = 3;
-    activeSegmentProgress = (progress - SECOND_SEGMENT_END) / (100 - SECOND_SEGMENT_END); // Scale to 0-1
+    // First segment is complete
+    firstSegmentProgress = 1; // 100%
+    
+    // Second segment only starts after first is complete AND delay has passed
+    if (secondSegmentActive) {
+      secondSegmentProgress = Math.min((progress - FIRST_SEGMENT_END) / (SECOND_SEGMENT_END - FIRST_SEGMENT_END), 1);
+      
+      // Third segment only starts after second is complete AND delay has passed
+      if (progress > SECOND_SEGMENT_END && thirdSegmentActive) {
+        thirdSegmentProgress = (progress - SECOND_SEGMENT_END) / (100 - SECOND_SEGMENT_END);
+      }
+    }
   }
+
+  // SVG arc path calculation
+  const radius = 70;
+  const center = { x: 80, y: 80 };
   
-  // Each segment is 1/3 of the circle
-  const segmentSize = circumference / 3;
+  // Create arc paths with larger gaps between them
+  // Each arc covers approximately 105 degrees (instead of 120) to create the gaps
   
-  // Calculate offsets for each segment
-  const firstSegmentOffset = activeSegment >= 1 ? 
-    segmentSize - (activeSegment === 1 ? activeSegmentProgress * segmentSize : segmentSize) : 
-    segmentSize;
-    
-  const secondSegmentOffset = activeSegment >= 2 ? 
-    segmentSize - (activeSegment === 2 ? activeSegmentProgress * segmentSize : segmentSize) : 
-    segmentSize;
-    
-  const thirdSegmentOffset = activeSegment >= 3 ? 
-    segmentSize - (activeSegment === 3 ? activeSegmentProgress * segmentSize : segmentSize) : 
-    segmentSize;
+  // First segment: from -30° to 75° (105° arc)
+  const firstSegmentPath = describeArc(center.x, center.y, radius, -30, 75);
+  
+  // Second segment: from 90° to 195° (105° arc)
+  const secondSegmentPath = describeArc(center.x, center.y, radius, 90, 195);
+  
+  // Third segment: from 210° to 315° (105° arc)
+  const thirdSegmentPath = describeArc(center.x, center.y, radius, 210, 315);
+  
+  // Calculate the length of each arc for the stroke-dasharray
+  const arcLength = (105 / 360) * (2 * Math.PI * radius);
 
   return (
     <AnimatePresence>
@@ -131,55 +162,77 @@ const Loader = ({ onLoadingComplete }: LoaderProps) => {
           <div className="relative w-48 h-48 flex items-center justify-center">
             {/* Circular progress indicator */}
             <svg className="absolute w-48 h-48" viewBox="0 0 160 160">
-              {/* Background circle */}
+              {/* Solid black background circle */}
               <circle 
-                cx="80" 
-                cy="80" 
-                r={radius} 
-                fill="transparent" 
-                stroke="#333333" 
-                strokeWidth="6"
+                cx={center.x} 
+                cy={center.y} 
+                r={radius + 3} // Slightly larger to ensure coverage
+                fill="#000000" 
+                stroke="none" 
               />
               
-              {/* First segment (Blue - #27A6D1) - 0° to 120° */}
+              {/* Gray background segments with gaps between them */}
+              <path
+                d={firstSegmentPath}
+                fill="transparent"
+                stroke="#333333"
+                strokeWidth="6"
+                strokeLinecap="butt"
+              />
+              <path
+                d={secondSegmentPath}
+                fill="transparent"
+                stroke="#333333"
+                strokeWidth="6"
+                strokeLinecap="butt"
+              />
+              <path
+                d={thirdSegmentPath}
+                fill="transparent"
+                stroke="#333333"
+                strokeWidth="6"
+                strokeLinecap="butt"
+              />
+              
+              {/* First segment (Blue - #27A6D1) */}
               <motion.path
-                d={`M 80 10 A ${radius} ${radius} 0 0 1 ${80 + radius * Math.cos(Math.PI * 2/3 - Math.PI/2)} ${80 + radius * Math.sin(Math.PI * 2/3 - Math.PI/2)}`}
+                d={firstSegmentPath}
                 fill="transparent"
                 stroke="#27A6D1"
                 strokeWidth="6"
-                strokeLinecap="round"
-                strokeDasharray={`${segmentSize} ${circumference - segmentSize}`}
-                strokeDashoffset={firstSegmentOffset}
-                initial={{ strokeDashoffset: segmentSize }}
-                animate={{ strokeDashoffset: firstSegmentOffset }}
+                strokeLinecap="butt"
+                strokeDasharray={`${arcLength} ${arcLength}`}
+                strokeDashoffset={arcLength - (firstSegmentProgress * arcLength)}
+                initial={{ strokeDashoffset: arcLength }}
+                animate={{ strokeDashoffset: arcLength - (firstSegmentProgress * arcLength) }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
               
-              {/* Second segment (Dark Blue/Black - #1B1B26) - 120° to 240° */}
+              {/* Second segment (Dark Blue/Black - #1B1B26) */}
               <motion.path
-                d={`M ${80 + radius * Math.cos(Math.PI * 2/3 - Math.PI/2)} ${80 + radius * Math.sin(Math.PI * 2/3 - Math.PI/2)} A ${radius} ${radius} 0 0 1 ${80 + radius * Math.cos(Math.PI * 4/3 - Math.PI/2)} ${80 + radius * Math.sin(Math.PI * 4/3 - Math.PI/2)}`}
+                d={secondSegmentPath}
                 fill="transparent"
                 stroke="#1B1B26"
                 strokeWidth="6"
-                strokeLinecap="round"
-                strokeDasharray={`${segmentSize} ${circumference - segmentSize}`}
-                strokeDashoffset={secondSegmentOffset}
-                initial={{ strokeDashoffset: segmentSize }}
-                animate={{ strokeDashoffset: secondSegmentOffset }}
+                strokeLinecap="butt"
+                strokeDasharray={`${arcLength} ${arcLength}`}
+                strokeDashoffset={arcLength - (secondSegmentProgress * arcLength)}
+                initial={{ strokeDashoffset: arcLength }}
+                animate={{ strokeDashoffset: arcLength - (secondSegmentProgress * arcLength) }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
               
-              {/* Third segment (Red - #E9331D) - 240° to 360° */}
+              {/* Third segment (Red - #E9331D) */}
               <motion.path
-                d={`M ${80 + radius * Math.cos(Math.PI * 4/3 - Math.PI/2)} ${80 + radius * Math.sin(Math.PI * 4/3 - Math.PI/2)} A ${radius} ${radius} 0 0 1 80 10`}
+                d={thirdSegmentPath}
                 fill="transparent"
                 stroke="#E9331D"
                 strokeWidth="6"
-                strokeLinecap="round"
-                strokeDasharray={`${segmentSize} ${circumference - segmentSize}`}
-                strokeDashoffset={thirdSegmentOffset}
-                initial={{ strokeDashoffset: segmentSize }}
-                animate={{ strokeDashoffset: thirdSegmentOffset }}
+                strokeLinecap="butt"
+                strokeDasharray={`${arcLength} ${arcLength}`}
+                strokeDashoffset={arcLength - (thirdSegmentProgress * arcLength)}
+                initial={{ strokeDashoffset: arcLength }}
+                animate={{ strokeDashoffset: arcLength - (thirdSegmentProgress * arcLength) }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
             </svg>
@@ -229,5 +282,24 @@ const Loader = ({ onLoadingComplete }: LoaderProps) => {
     </AnimatePresence>
   );
 };
+
+// Helper function to create SVG arc path
+function describeArc(x: number, y: number, radius: number, startAngle: number, endAngle: number) {
+  // Convert angles from degrees to radians
+  const startAngleRad = (startAngle * Math.PI) / 180;
+  const endAngleRad = (endAngle * Math.PI) / 180;
+  
+  // Calculate start and end points
+  const startX = x + radius * Math.cos(startAngleRad);
+  const startY = y + radius * Math.sin(startAngleRad);
+  const endX = x + radius * Math.cos(endAngleRad);
+  const endY = y + radius * Math.sin(endAngleRad);
+  
+  // Determine if the arc should be drawn in a clockwise or counterclockwise direction
+  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+  
+  // Create the SVG path string
+  return `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`;
+}
 
 export default Loader;

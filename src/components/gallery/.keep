@@ -1,0 +1,3 @@
+This is where all the components that will be used inside Gallery page should be generated
+
+If one component will be used in multiple pages, it should be placed inside the global directory

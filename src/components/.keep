@@ -1,0 +1,4 @@
+In Components directory we generate all the necessary components that we will use inside the application
+
+If one component will be used in multiple pages, it should be placed inside the global directory
+If not, it should be placed inside the directory of the page it will be used in

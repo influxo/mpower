@@ -23,7 +23,7 @@ function App() {
         {/* Define your routes here */}
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<OurServices />} />
-        <Route path="/about" element={<Gallery />} />
+        <Route path="/gallery" element={<Gallery />} />
         
         {/* Add more routes as needed */}
         

@@ -7,7 +7,7 @@ import peugeothome from "../../assets/logos/peugeot-home.svg";
 import vwhome from "../../assets/logos/vw-home.svg";
 
 // BrandCard Component
-const BrandCard = ({ imgSrc, altText, brandName }) => {
+const BrandCard: React.FC<{ imgSrc: string; altText: string; brandName: string }> = ({ imgSrc, altText, brandName }) => {
   return (
     <div className="bg-white rounded-md flex flex-col items-center justify-center h-32 p-4">
       <img src={imgSrc} alt={altText} className="h-20 object-contain" />
@@ -18,7 +18,7 @@ const BrandCard = ({ imgSrc, altText, brandName }) => {
 
 // BrandsSection Component
 const BrandsSection = () => {
-  const [ setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const brands = [
     { imgSrc: audihome, altText: "Audi", brandName: "Audi" },
     { imgSrc: bmwhome, altText: "BMW", brandName: "BMW" },
@@ -30,11 +30,11 @@ const BrandsSection = () => {
 
   // Logic for sliding left and right
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % brands.length);
+    setCurrentIndex((prevIndex: number) => (prevIndex + 1) % brands.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
+    setCurrentIndex((prevIndex: number) =>
       prevIndex === 0 ? brands.length - 1 : prevIndex - 1
     );
   };
@@ -51,35 +51,19 @@ const BrandsSection = () => {
           ))}
         </div>
 
-        {/* For Small Screens (Carousel) */}
-        <div className="md:hidden relative">
-          {/* Carousel Container */}
-          <div className="flex overflow-x-auto snap-x snap-mandatory">
-            {brands.map((brand, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-full snap-start flex justify-center items-center"
-              >
-                <BrandCard {...brand} />
-              </div>
-            ))}
+        {/* For Mobile (Carousel) */}
+        <div className="md:hidden">
+          <div className="flex items-center justify-between">
+            <button onClick={prevSlide} className="bg-white p-2 rounded-full">
+              <span>←</span>
+            </button>
+            <div className="flex-1 mx-4">
+              <BrandCard {...brands[currentIndex]} />
+            </div>
+            <button onClick={nextSlide} className="bg-white p-2 rounded-full">
+              <span>→</span>
+            </button>
           </div>
-
-          {/* Previous Button */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black bg-opacity-50 rounded-full p-2"
-          >
-            &#60;
-          </button>
-
-          {/* Next Button */}
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black bg-opacity-50 rounded-full p-2"
-          >
-            &#62;
-          </button>
         </div>
       </div>
     </section>

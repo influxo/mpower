@@ -90,12 +90,11 @@ const OurServices: React.FC = () => {
             )}
           </div>
         ))}
-
-        <div className="absolute bottom-0 left-0 w-40 md:w-52">
-          <img src={bottomLeft} alt="M-style Stripes" className="w-full" />
-        </div>
       </section>
 
+      <div className="w-full flex justify-start">
+        <img src={bottomLeft} alt="M-style Stripes" className="w-40 md:w-52" />
+      </div>
       <Footer />
     </div>
   );

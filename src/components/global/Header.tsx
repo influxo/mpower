@@ -15,7 +15,16 @@ function Navbar() {
     setTimeout(() => {
       const contactSection = document.getElementById("contact");
       if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" });
+        // Calculate position relative to the document
+        const rect = contactSection.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const offsetTop = rect.top + scrollTop;
+        
+        // Scroll to the element with offset
+        window.scrollTo({
+          top: offsetTop - 50, // Add negative offset to ensure it's visible at the top
+          behavior: "smooth"
+        });
       } else {
         // If element not found, scroll to bottom of page as fallback
         window.scrollTo({
@@ -23,7 +32,7 @@ function Navbar() {
           behavior: "smooth"
         });
       }
-    }, 100);
+    }, 500); // Increased timeout to ensure page has fully loaded
   }
 
   return (
@@ -75,7 +84,7 @@ function Navbar() {
         </div>
       </nav>
 
-      <section className="relative h-[500px] md:h-[700px] flex items-center z-10">
+      <section className="relative h-[70vh] md:h-[700px] flex items-center z-10">
         <div className="absolute inset-0 z-0">
           <img
             src={backgroundImage}
@@ -86,18 +95,20 @@ function Navbar() {
         </div>
 
         <div className="container mx-auto px-4 z-10 text-white">
-          <h1 className="text-4xl md:text-5xl mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-4">
             <span className="bg-[#171766] px-2 py-1 rounded-md">Mpower</span> -
-            Votre
-            <br />
+            Votre<br />
             carrossier d'excellence
           </h1>
-          <p className="max-w-lg mb-6">
-            Chez Mpower, nous mettons notre expertise au service de votre
-            véhicule pour garantir un travail de qualité haut de gamme. Que vous
-            soyez un particulier, un professionnel ou une assurance, nous
-            prenons en charge toutes les marques et tous les types de véhicules
-            avec un seul objectif : vous offrir une prestation irréprochable.
+          <p className="text-base sm:w-full md:max-w-md mb-6">
+          Chez Mpower, nous mettons notre expertise au service de votre véhicule pour garantir un travail de
+          qualité haut de gamme. Que vous soyez un 
+          particulier, un professionnel ou une assurance, nous
+          prenons en
+          charge toutes les marques et tous les types de véhicules avec
+          un seul objectif : vous
+          offrir une prestation irréprochable.
+
           </p>
           <MButton text="Order Now" onClick={() => handleButtonClick()} />
         </div>

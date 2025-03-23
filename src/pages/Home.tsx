@@ -18,7 +18,18 @@ import Footer from "../components/global/Footer";
 
 const Home: React.FC = () => {
   const handleButtonClick = () => {
-    alert("Button clicked!");
+    setTimeout(() => {
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // If element not found, scroll to bottom of page as fallback
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth"
+        });
+      }
+    }, 100);
   };
 
   return (

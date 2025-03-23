@@ -1,12 +1,21 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Loader } from './components/loader'
 import { Home, OurServices, Gallery } from './pages'
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    // Check if this is the initial page load
+    return !sessionStorage.getItem('hasVisitedBefore');
+  });
  
+  useEffect(() => {
+    // If the app has finished loading, mark that the user has visited
+    if (!isLoading) {
+      sessionStorage.setItem('hasVisitedBefore', 'true');
+    }
+  }, [isLoading]);
 
   function handleLoadingComplete() {
     setIsLoading(false);

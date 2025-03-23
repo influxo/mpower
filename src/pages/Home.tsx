@@ -1,8 +1,7 @@
 import React from "react";
 import { MButton } from "../components/global";
 // import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react"
-import backgroundImage from "../assets/images/background.png"; // Adjust the path if needed
-import Navbar from "../components/global/Navbar";
+import Navbar from "../components/global/Header";
 import about from "../assets/images/home-about.png";
 import BrandCard from "../components/home/BrandCard";
 import bottom from "../assets/images/bottom.png";
@@ -26,39 +25,6 @@ const Home: React.FC = () => {
     <main className="min-h-screen">
       {/* Navigation */}
       <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative h-[500px] md:h-[700px] flex items-center">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={backgroundImage}
-            alt="Luxury car"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto px-4 z-10 text-white">
-          <h1 className="text-4xl md:text-5xl mb-4 text-white">
-            <span className="bg-[#171766]">Mpower </span> - Votre<br></br>{" "}
-            carrossier d'excellence
-          </h1>
-          <p className="max-w-lg mb-6">
-            Chez Mpower, nous mettons notre expertise au service de votre
-            véhicule pour garantir un travail de
-            <br />
-            qualité haut de gamme. Que vous soyez un particulier, un
-            professionnel ou une assurance, nous
-            <br />
-            prenons en charge toutes les marques et tous les types de
-            <br /> véhicules avec un seul objectif : vous
-            <br />
-            offrir une prestation irréprochable.
-          </p>
-          <button className="bg-white text-black px-6 py-2 rounded hover:bg-gray-200 transition">
-            En savoir plus
-          </button>
-        </div>
-      </section>
-
       <BrandCard />
 
       {/* Commitments Section */}

@@ -15,6 +15,7 @@ module.exports = {
         'tertiary': '#D9D9D9',
         'quaternary': '#F5F5F5',
         'light-gray': '#9E9E9E',
+        'dark-gray': '#1A1A1A',
       }
     },
   },

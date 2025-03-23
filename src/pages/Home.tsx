@@ -105,58 +105,26 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-center">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service1}
-                alt="Carrosserie"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Carrosserie &<br /> Peinture
-                </h3>
+            {[
+              { img: service1, title: "Carrosserie & Peinture" },
+              { img: service2, title: "Débosselage sans peinture" },
+              { img: service3, title: "Réparation de jantes" },
+              { img: service4, title: "Personnalisation sur mesure" },
+            ].map((service, index) => (
+              <div
+                key={index}
+                className="relative h-72 overflow-hidden group text-center"
+              >
+                <img
+                  src={service.img}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-white/30 backdrop-blur-md p-4 text-white opacity-0 flex justify-center items-center group-hover:opacity-100 transition-opacity duration-500">
+                  <h3 className="text-xl w-32">{service.title}</h3>
+                </div>
               </div>
-            </div>
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service2}
-                alt="Peinture"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Débosselage
-                  <br /> sans peinture
-                </h3>
-              </div>
-            </div>
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service3}
-                alt="Réparation"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Réparation de
-                  <br />
-                  jantes
-                </h3>
-              </div>
-            </div>
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service4}
-                alt="Restauration"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Personnalisation
-                  <br /> sur mesure
-                </h3>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="flex justify-center">
@@ -240,7 +208,7 @@ const Home: React.FC = () => {
         </div>
       </section>
       <Contact />
-      <Footer/>
+      <Footer />
     </main>
   );
 };

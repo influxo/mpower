@@ -4,15 +4,17 @@ interface MButtonProps {
   text: string;
   onClick?: () => void;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 
 // This component is fine for now, if it needs any adjusments later, this is where to edit them.
 
-const MButton: React.FC<MButtonProps> = ({ text, onClick, className = '' }) => {
+const MButton: React.FC<MButtonProps> = ({ text, onClick, className = '', type = 'button' }) => {
   return (
     <button 
       onClick={onClick}
+      type={type}
       className={`relative group flex items-center justify-center px-4 py-2 bg-white text-black text-lg transition-all duration-300 shadow-md hover:shadow-lg ${className}`}
     >
       {/* Colored stripes on the left */}

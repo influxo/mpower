@@ -5,7 +5,7 @@ import { MButton } from "../global";
 
 const Contact: React.FC = () => {
   return (
-    <div>
+    <div id="contact">
       <div className="flex justify-center items-center bg-dark-gray text-white">
         <section className="w-full">
           <div className="flex flex-col md:flex-row md:gap-8">

@@ -2,11 +2,29 @@ import { useState } from "react";
 import backgroundImage from "../../assets/images/background.png";
 import MButton from "./MButton";
 import hamburger from "../../assets/images/hamburger-icon.svg";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleButtonClick = () => {
+    navigate("/");
+    setTimeout(() => {
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // If element not found, scroll to bottom of page as fallback
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth"
+        });
+      }
+    }, 100);
+  }
 
   return (
     <div>
@@ -81,7 +99,7 @@ function Navbar() {
             prenons en charge toutes les marques et tous les types de véhicules
             avec un seul objectif : vous offrir une prestation irréprochable.
           </p>
-          <MButton text="Order Now" onClick={() => {}} />
+          <MButton text="Order Now" onClick={() => handleButtonClick()} />
         </div>
       </section>
     </div>

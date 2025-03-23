@@ -1,8 +1,7 @@
 import React from "react";
 import { MButton } from "../components/global";
 // import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react"
-import backgroundImage from "../assets/images/background.png"; // Adjust the path if needed
-import Navbar from "../components/global/Navbar";
+import Navbar from "../components/global/Header";
 import about from "../assets/images/home-about.png";
 import BrandCard from "../components/home/BrandCard";
 import bottom from "../assets/images/bottom.png";
@@ -26,39 +25,6 @@ const Home: React.FC = () => {
     <main className="min-h-screen">
       {/* Navigation */}
       <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative h-[500px] md:h-[700px] flex items-center">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={backgroundImage}
-            alt="Luxury car"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto px-4 z-10 text-white">
-          <h1 className="text-4xl md:text-5xl mb-4 text-white">
-            <span className="bg-[#171766]">Mpower </span> - Votre<br></br>{" "}
-            carrossier d'excellence
-          </h1>
-          <p className="max-w-lg mb-6">
-            Chez Mpower, nous mettons notre expertise au service de votre
-            véhicule pour garantir un travail de
-            <br />
-            qualité haut de gamme. Que vous soyez un particulier, un
-            professionnel ou une assurance, nous
-            <br />
-            prenons en charge toutes les marques et tous les types de
-            <br /> véhicules avec un seul objectif : vous
-            <br />
-            offrir une prestation irréprochable.
-          </p>
-          <button className="bg-white text-black px-6 py-2 rounded hover:bg-gray-200 transition">
-            En savoir plus
-          </button>
-        </div>
-      </section>
-
       <BrandCard />
 
       {/* Commitments Section */}
@@ -139,58 +105,26 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-center">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service1}
-                alt="Carrosserie"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Carrosserie &<br /> Peinture
-                </h3>
+            {[
+              { img: service1, title: "Carrosserie & Peinture" },
+              { img: service2, title: "Débosselage sans peinture" },
+              { img: service3, title: "Réparation de jantes" },
+              { img: service4, title: "Personnalisation sur mesure" },
+            ].map((service, index) => (
+              <div
+                key={index}
+                className="relative h-72 overflow-hidden group text-center"
+              >
+                <img
+                  src={service.img}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-white/30 backdrop-blur-md p-4 text-white opacity-0 flex justify-center items-center group-hover:opacity-100 transition-opacity duration-500">
+                  <h3 className="text-xl w-32">{service.title}</h3>
+                </div>
               </div>
-            </div>
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service2}
-                alt="Peinture"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Débosselage
-                  <br /> sans peinture
-                </h3>
-              </div>
-            </div>
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service3}
-                alt="Réparation"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Réparation de
-                  <br />
-                  jantes
-                </h3>
-              </div>
-            </div>
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={service4}
-                alt="Restauration"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 p-4 text-white">
-                <h3 className="text-xl font-medium">
-                  Personnalisation
-                  <br /> sur mesure
-                </h3>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="flex justify-center">
@@ -274,7 +208,7 @@ const Home: React.FC = () => {
         </div>
       </section>
       <Contact />
-      <Footer/>
+      <Footer />
     </main>
   );
 };

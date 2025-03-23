@@ -5,68 +5,74 @@ import { MButton } from "../global";
 
 const Contact: React.FC = () => {
   return (
-    <div className="flex justify-center items-center bg-[#1A1A1A] text-white">
-      <section className="w-full">
-        <div className="flex flex-col md:flex-row md:gap-8">
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src={contact}
-              alt="Vintage typewriter"
-              className="object-cover"
-            />
-          </div>
-
-          <div className="md:w-1/2">
-            <div className="relative">
+    <div>
+      <div className="flex justify-center items-center bg-dark-gray text-white">
+        <section className="w-full">
+          <div className="flex flex-col md:flex-row md:gap-8">
+            <div className="md:w-1/2 flex justify-center">
               <img
-                src={topRight}
+                src={contact}
                 alt="Vintage typewriter"
-                className="absolute top-0 right-0"
+                className="object-cover"
               />
             </div>
-            <div className="md:p-12 p-4">
-              <h1 className="text-3xl mb-6">Contactez-nous</h1>
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 my-16">
-                <ContactInfo
-                  icon="email"
-                  label="Email"
-                  text="Mpowerauto38@gmail.com"
-                />
-                <ContactInfo icon="phone" label="Téléphone" text="0617542587" />
-                <ContactInfo
-                  icon="location"
-                  label="Adresse"
-                  text="123 Rue XYZ, France"
-                />
-                <ContactInfo
-                  icon="clock"
-                  label="Horaires"
-                  text="Lundi - Samedi 08:30 – 19:00"
+
+            <div className="md:w-1/2">
+              <div className="relative">
+                <img
+                  src={topRight}
+                  alt="Vintage typewriter"
+                  className="absolute top-0 right-0"
                 />
               </div>
+              <div className="md:p-12 p-4">
+                <h1 className="text-3xl mb-6">Contactez-nous</h1>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 my-16">
+                  <ContactInfo
+                    icon="email"
+                    label="Email"
+                    text="Mpowerauto38@gmail.com"
+                  />
+                  <ContactInfo
+                    icon="phone"
+                    label="Téléphone"
+                    text="0617542587"
+                  />
+                  <ContactInfo
+                    icon="location"
+                    label="Adresse"
+                    text="123 Rue XYZ, France"
+                  />
+                  <ContactInfo
+                    icon="clock"
+                    label="Horaires"
+                    text="Lundi - Samedi 08:30 – 19:00"
+                  />
+                </div>
 
-              <form className="mt-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InputField label="Full Name" placeholder="John Doe" />
-                  <InputField label="Email" placeholder="john@example.com" />
-                </div>
-                <div className="mt-4">
-                  <label className="block mb-2 text-sm text-white">
-                    Send a message
-                  </label>
-                  <textarea
-                    className="w-full h-32 px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="Message"
-                  ></textarea>
-                </div>
-                <div className="flex justify-center my-6">
-                  <MButton text="Send a message" className="mt-4" />
-                </div>
-              </form>
+                <form className="mt-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <InputField label="Full Name" placeholder="John Doe" />
+                    <InputField label="Email" placeholder="john@example.com" />
+                  </div>
+                  <div className="mt-4">
+                    <label className="block mb-2 text-sm text-white">
+                      Send a message
+                    </label>
+                    <textarea
+                      className="w-full h-32 px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      placeholder="Message"
+                    ></textarea>
+                  </div>
+                  <div className="flex justify-center my-6">
+                    <MButton text="Send a message" className="mt-4" />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };

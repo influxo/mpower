@@ -1,5 +1,4 @@
 import React, { useState, forwardRef } from "react";
-import { galleryImages } from "../../data/galleryData";
 
 const ProjectGallery = forwardRef<HTMLDivElement>((_, ref) => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number>(0);

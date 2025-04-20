@@ -9,15 +9,17 @@ const Contact: React.FC = () => {
     email: "",
     message: "",
   });
-  
+
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   // Reset form when component mounts
   useEffect(() => {
@@ -28,17 +30,19 @@ const Contact: React.FC = () => {
     });
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    
-    setFormData(prevState => ({
+
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name as keyof typeof errors]) {
-      setErrors(prevState => ({
+      setErrors((prevState) => ({
         ...prevState,
         [name]: "",
       }));
@@ -48,13 +52,13 @@ const Contact: React.FC = () => {
   const validateForm = (): boolean => {
     let isValid = true;
     const newErrors = { ...errors };
-    
+
     // Validate name
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
       isValid = false;
     }
-    
+
     // Validate email
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
@@ -63,27 +67,27 @@ const Contact: React.FC = () => {
       newErrors.email = "Email is invalid";
       isValid = false;
     }
-    
+
     // Validate message
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
       isValid = false;
     }
-    
+
     setErrors(newErrors);
     return isValid;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    
+    setSubmitStatus("idle");
+
     try {
       // Create HTML content for the email
       const htmlContent = `
@@ -92,20 +96,20 @@ const Contact: React.FC = () => {
         <p><strong>Email:</strong> ${formData.email}</p>
         <p><strong>Message:</strong> ${formData.message}</p>
       `;
-      
-      const response = await fetch('http://localhost:3001/api/mail', {
-        method: 'POST',
+
+      const response = await fetch("http://localhost:3001/api/mail", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           subject: `Contact Form: ${formData.name}`,
           html: htmlContent,
           senderEmail: formData.email,
-          senderName: formData.name
+          senderName: formData.name,
         }),
       });
-      
+
       if (response.ok) {
         // Reset form on success
         setFormData({
@@ -113,16 +117,34 @@ const Contact: React.FC = () => {
           email: "",
           message: "",
         });
-        setSubmitStatus('success');
+        setSubmitStatus("success");
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus("error");
       }
     } catch (error) {
-      console.error('Error sending email:', error);
-      setSubmitStatus('error');
+      console.error("Error sending email:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Add function to handle WhatsApp redirect
+  const handleWhatsAppRedirect = () => {
+    // The phone number should be in international format without any special characters
+    const phoneNumber = "33617542587"; // French number format: +33 6 17 54 25 87
+    const message = encodeURIComponent(
+      "Bonjour, je vous contacte depuis votre site web."
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  // Function to check if the device is mobile
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
   };
 
   return (
@@ -171,10 +193,32 @@ const Contact: React.FC = () => {
                   />
                 </div>
 
+                {/* WhatsApp Button for Mobile */}
+                {isMobile() && (
+                  <div className="mb-8">
+                    <button
+                      onClick={handleWhatsAppRedirect}
+                      className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2M12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20M8.39 18.67C9.2 18.89 10.09 19 11 19C15.97 19 20 14.97 20 10C20 9.09 19.89 8.2 19.67 7.39L18.66 8.4C18.83 8.92 18.94 9.46 18.94 10C18.94 14.39 15.39 17.94 11 17.94C10.46 17.94 9.92 17.83 9.4 17.66L8.39 18.67M14.94 13.06L16.33 14.45C16.94 13.54 17.25 12.44 17.25 11.25C17.25 8.01 14.59 5.35 11.35 5.35C10.16 5.35 9.06 5.66 8.15 6.27L9.54 7.66C10.15 7.23 10.84 7 11.59 7C13.73 7 15.47 8.74 15.47 10.88C15.47 11.63 15.24 12.32 14.94 13.06Z" />
+                      </svg>
+                      Nous contacter sur WhatsApp
+                    </button>
+                  </div>
+                )}
+
                 <form className="mt-12" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block mb-2 text-sm text-white">Full Name</label>
+                      <label className="block mb-2 text-sm text-white">
+                        Full Name
+                      </label>
                       <input
                         type="text"
                         name="name"
@@ -182,14 +226,20 @@ const Contact: React.FC = () => {
                         onChange={handleInputChange}
                         placeholder="John Doe"
                         className={`w-full px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border ${
-                          errors.name ? 'border-red-500' : 'border-gray-200'
+                          errors.name ? "border-red-500" : "border-gray-200"
                         } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400`}
                       />
-                      {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                      {errors.name && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
-                    
+
                     <div>
-                      <label className="block mb-2 text-sm text-white">Email</label>
+                      <label className="block mb-2 text-sm text-white">
+                        Email
+                      </label>
                       <input
                         type="email"
                         name="email"
@@ -197,13 +247,17 @@ const Contact: React.FC = () => {
                         onChange={handleInputChange}
                         placeholder="john@example.com"
                         className={`w-full px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border ${
-                          errors.email ? 'border-red-500' : 'border-gray-200'
+                          errors.email ? "border-red-500" : "border-gray-200"
                         } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400`}
                       />
-                      {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                      {errors.email && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
-                  
+
                   <div className="mt-4">
                     <label className="block mb-2 text-sm text-white">
                       Send a message
@@ -213,30 +267,34 @@ const Contact: React.FC = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       className={`w-full h-32 px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border ${
-                        errors.message ? 'border-red-500' : 'border-gray-200'
+                        errors.message ? "border-red-500" : "border-gray-200"
                       } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400`}
                       placeholder="Message"
                     ></textarea>
-                    {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                    {errors.message && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
-                  
-                  {submitStatus === 'success' && (
+
+                  {submitStatus === "success" && (
                     <div className="mt-4 p-2 bg-green-100 text-green-800 rounded">
                       Your message has been sent successfully!
                     </div>
                   )}
-                  
-                  {submitStatus === 'error' && (
+
+                  {submitStatus === "error" && (
                     <div className="mt-4 p-2 bg-red-100 text-red-800 rounded">
                       There was an error sending your message. Please try again.
                     </div>
                   )}
-                  
+
                   <div className="flex justify-center my-6">
-                    <MButton 
-                      text={isSubmitting ? "Sending..." : "Send a message"} 
-                      className="mt-4" 
-                      type="submit" 
+                    <MButton
+                      text={isSubmitting ? "Sending..." : "Send a message"}
+                      className="mt-4"
+                      type="submit"
                     />
                   </div>
                 </form>
@@ -265,8 +323,7 @@ const ContactInfo = ({
       "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z",
     location:
       "M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0M15 10.5a3 3 0 11-6 0 3 3 0 016 0z",
-    clock:
-      "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z",
+    clock: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z",
   };
   return (
     <div className="flex items-center">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import backgroundImage from "../../assets/images/gallery/Hero.jpeg";
+import backgroundImage from "/images/gallery/Hero.jpeg";
 import MButton from "./MButton";
 import hamburger from "../../assets/images/hamburger-icon.svg";
 import { useNavigate } from "react-router-dom";

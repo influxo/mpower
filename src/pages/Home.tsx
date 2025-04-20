@@ -33,6 +33,20 @@ const Home: React.FC = () => {
     }, 100);
   };
 
+  const commitments = [
+    {
+      text: "Franchise offerte pour un max d'économie*",
+      tooltip: "voir modalités selon les réparations",
+    },
+    "Pas d'avance de frais pour plus de tranquillité",
+    "Véhicule de prêt selon la disponibilité",
+    "Respect des délais pour une réparation rapide et efficace",
+    "Collaboration avec toutes les assurances pour une gestion simplifiée",
+    "Travail soigné pour votre satisfaction",
+    "10 ans d'expérience",
+    "Conseils personnalisés pour un accompagnement sur mesure",
+  ];
+
   return (
     <main className="min-h-screen">
       {/* Navigation */}
@@ -62,14 +76,7 @@ const Home: React.FC = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
-            {[
-              "Franchise offerte pour un max d'économie",
-              "Pas d'avance de frais pour plus de tranquillité",
-              "Véhicule de prêt selon disponibilité",
-              "Respect des délais pour une réparation rapide et efficace",
-              "Collaboration avec toutes les assurances pour une gestion simplifiée",
-              "Travail soigné pour votre satisfaction",
-            ].map((item, index) => (
+            {commitments.map((commitment, index) => (
               <div key={index} className="flex items-start space-x-2">
                 <svg
                   width="22"
@@ -84,7 +91,18 @@ const Home: React.FC = () => {
                     fill="#171766"
                   />
                 </svg>
-                <span className="leading-tight">{item}</span>
+                <div className="leading-tight">
+                  {typeof commitment === "string" ? (
+                    commitment
+                  ) : (
+                    <div className="group relative">
+                      <span>{commitment.text}</span>
+                      <span className="text-xs text-gray-500 ml-1 cursor-help group-hover:underline">
+                        {commitment.tooltip}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

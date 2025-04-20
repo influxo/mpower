@@ -15,6 +15,7 @@ import TestimonialsCarouselImproved from "../components/home/TestimonialsCarouse
 import blueCar from "../assets/images/blue-car.png";
 import Contact from "../components/home/Contact";
 import Footer from "../components/global/Footer";
+import ProjectGallery from "../components/home/ProjectGallery";
 
 const Home: React.FC = () => {
   const handleButtonClick = () => {
@@ -26,7 +27,7 @@ const Home: React.FC = () => {
         // If element not found, scroll to bottom of page as fallback
         window.scrollTo({
           top: document.body.scrollHeight,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }, 100);
@@ -53,8 +54,8 @@ const Home: React.FC = () => {
             Nos engagements <br />- notre succès !
           </h2>
           <p className="my-12 text-gray-700 max-w-lg">
-            Confiez votre véhicule à Mpower et bénéficiez d’une prise en charge
-            sans stress ! Franchise offerte, pas d’avance de frais et un service
+            Confiez votre véhicule à Mpower et bénéficiez d'une prise en charge
+            sans stress ! Franchise offerte, pas d'avance de frais et un service
             rapide pour retrouver votre voiture en parfait état. Agréés par
             toutes les assurances, nous simplifions vos démarches avec un
             travail soigné et minutieux.
@@ -63,7 +64,7 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
             {[
               "Franchise offerte pour un max d'économie",
-              "Pas d’avance de frais pour plus de tranquillité",
+              "Pas d'avance de frais pour plus de tranquillité",
               "Véhicule de prêt selon disponibilité",
               "Respect des délais pour une réparation rapide et efficace",
               "Collaboration avec toutes les assurances pour une gestion simplifiée",
@@ -144,6 +145,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <ProjectGallery />
+
       {/* History Section */}
       <section className="relative">
         <div className="flex flex-col bg-[#1A1A1A] md:flex-row items-center">
@@ -159,11 +163,11 @@ const Home: React.FC = () => {
               </h2>
               <p className="mb-4">
                 Créé il y a plusieurs années à Bourgoin-Jallieu, Mpower est né
-                d’une passion pour l’automobile et d’une exigence de perfection.
+                d'une passion pour l'automobile et d'une exigence de perfection.
                 Spécialisés dans la carrosserie, la réparation de jantes et la
                 personnalisation sur mesure, nous accompagnons aussi bien les
                 particuliers que les professionnels dans la transformation et
-                l’entretien de leur véhicule.
+                l'entretien de leur véhicule.
               </p>
               <p className="mb-4">
                 Grâce à notre expertise et à des équipements modernes, nous
@@ -175,7 +179,7 @@ const Home: React.FC = () => {
                 qualité de notre travail et de la confiance de nos clients.
               </p>
               <p className="mb-12">
-                Que ce soit pour redonner à votre voiture son éclat d’origine ou
+                Que ce soit pour redonner à votre voiture son éclat d'origine ou
                 pour la personnaliser à votre image, Mpower vous garantit un
                 travail de qualité, à la hauteur de vos exigences
               </p>

@@ -85,20 +85,22 @@ function Navbar() {
         </div>
       </nav>
 
-      <section className="relative h-[70vh] md:h-[700px] flex items-center z-10">
+      <section className="relative h-[70vh] md:h-[920px] flex items-center z-10">
         <div className="absolute inset-0 z-0">
           <img
             src={backgroundImage}
             alt="Luxury car"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         </div>
 
         <div className="container mx-auto px-4 z-10 text-white">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-4">
-            <span className="bg-[#171766] px-2 py-1 rounded-md">Mpower</span> -
-            Votre
+          <h1 className="text-3xl sm:text-4xl md:text-7xl mb-2 sm:mb-4">
+            <span className="bg-[#171766] px-2 py-1 rounded-md">
+              Mpower Auto
+            </span>{" "}
+            - Votre
             <br />
             carrossier d'excellence
           </h1>

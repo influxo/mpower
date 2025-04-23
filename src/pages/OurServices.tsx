@@ -20,7 +20,7 @@ const OurServices: React.FC = () => {
     {
       title: "Débosselage sans peinture",
       description:
-        "Fini les petites bosses et impacts disgracieux ! Notre technique de débosselage sans peinture permet de redresser la tôle sans endommager la peinture d’origine. Une solution rapide, efficace et économique pour redonner à votre véhicule son apparence initiale, sans nécessité de repeindre.",
+        "Fini les petites bosses et impacts disgracieux ! Notre technique de débosselage sans peinture permet de redresser la tôle sans endommager la peinture d'origine. Une solution rapide, efficace, économique et surtout écologique, pour redonner à votre véhicule son apparence initiale, sans nécessité de repeindre.",
       image: service3,
       dark: false,
     },
@@ -34,7 +34,7 @@ const OurServices: React.FC = () => {
     {
       title: "Personnalisation sur mesure",
       description:
-        "Envie de donner un style unique à votre voiture ? Nous réalisons des modifications sur mesure : covering, peinture personnalisée, jantes, kit carrosserie, sellerie ou encore éclairage LED. Transformez votre véhicule selon vos envies et démarquez-vous avec une finition haut de gamme et personnalisée.",
+        "Envie de donner un style unique à votre voiture ? Nous réalisons des modifications sur mesure :  peinture personnalisée, jantes, kit carrosserie, sellerie ou encore éclairage LED. Transformez votre véhicule selon vos envies et démarquez-vous avec une finition haut de gamme et personnalisée.",
       image: service1,
       dark: false,
     },

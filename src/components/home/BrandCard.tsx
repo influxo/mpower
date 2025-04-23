@@ -1,10 +1,15 @@
 import React from "react";
 import audihome from "../../assets/logos/audi-home.svg";
 import bmwhome from "../../assets/logos/bmw-home.svg";
-import fordhome from "../../assets/logos/ford-home.svg";
+
 import mercedeshome from "../../assets/logos/mercedes-home.svg";
 import peugeothome from "../../assets/logos/peugeot-home.svg";
 import vwhome from "../../assets/logos/vw-home.svg";
+import porsche from "../../assets/logos/porsche.jpg";
+import maserati from "../../assets/logos/maserati.png";
+import volvo from "../../assets/logos/volvo.png";
+import renault from "../../assets/logos/renault.jpg";
+import citroen from "../../assets/logos/citroen.png";
 
 const BrandCard: React.FC<{
   imgSrc: string;
@@ -21,12 +26,17 @@ const BrandCard: React.FC<{
 
 const BrandsSection = () => {
   const brands = [
-    { imgSrc: audihome, altText: "Audi", brandName: "Audi" },
+    { imgSrc: porsche, altText: "Porsche", brandName: "Porsche" },
     { imgSrc: bmwhome, altText: "BMW", brandName: "BMW" },
-    { imgSrc: fordhome, altText: "Ford", brandName: "Ford" },
+    { imgSrc: audihome, altText: "Audi", brandName: "Audi" },
     { imgSrc: mercedeshome, altText: "Mercedes", brandName: "Mercedes" },
-    { imgSrc: peugeothome, altText: "Peugeot", brandName: "Peugeot" },
     { imgSrc: vwhome, altText: "VW", brandName: "VW" },
+    { imgSrc: maserati, altText: "Porsche", brandName: "Maserati" },
+    { imgSrc: volvo, altText: "Porsche", brandName: "Volvo" },
+    { imgSrc: renault, altText: "Porsche", brandName: "Renault" },
+    { imgSrc: peugeothome, altText: "Peugeot", brandName: "Peugeot" },
+
+    { imgSrc: citroen, altText: "Porsche", brandName: "Citroen" },
   ];
 
   return (
@@ -37,10 +47,14 @@ const BrandsSection = () => {
             Les marques
           </h2>
 
-          <div className="hidden md:grid grid-cols-3 md:grid-cols-6 gap-4 mb-8">
-            {brands.map((brand, index) => (
-              <BrandCard key={index} {...brand} />
-            ))}
+          <div className="hidden md:block overflow-hidden">
+            <div className="flex space-x-4 animate-slide">
+              {[...brands, ...brands].map((brand, index) => (
+                <div key={index} className="shrink-0">
+                  <BrandCard {...brand} />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="md:hidden overflow-x-auto flex space-x-4 scrollbar-hide snap-x snap-mandatory scroll-smooth">

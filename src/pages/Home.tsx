@@ -36,7 +36,6 @@ const Home: React.FC = () => {
   const commitments = [
     {
       text: "Franchise offerte pour un max d'économie*",
-      tooltip: "voir modalités selon les réparations",
     },
     "Pas d'avance de frais pour plus de tranquillité",
     "Véhicule de prêt selon la disponibilité",
@@ -97,9 +96,6 @@ const Home: React.FC = () => {
                   ) : (
                     <div className="group relative">
                       <span>{commitment.text}</span>
-                      <span className="text-xs text-gray-500 ml-1 cursor-help group-hover:underline">
-                        {commitment.tooltip}
-                      </span>
                     </div>
                   )}
                 </div>

@@ -7,9 +7,8 @@ const Contact: React.FC = () => {
       <footer className="bg-secondary text-white md:py-16 py-10">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center border-b border-light-gray pb-6 mb-6">
-            <div></div>
             <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook">
+              <a href="#" aria-label="Tiktok">
                 <svg
                   width="20"
                   height="40"
@@ -23,20 +22,7 @@ const Contact: React.FC = () => {
                   />
                 </svg>
               </a>
-              <a href="#" aria-label="Twitter">
-                <svg
-                  width="20"
-                  height="40"
-                  viewBox="0 0 42 34"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M41.92 4C40.38 4.7 38.72 5.16 37 5.38C38.76 4.32 40.12 2.64 40.76 0.62C39.1 1.62 37.26 2.32 35.32 2.72C33.74 1 31.52 0 29 0C24.3 0 20.46 3.84 20.46 8.58C20.46 9.26 20.54 9.92 20.68 10.54C13.56 10.18 7.21996 6.76 2.99996 1.58C2.25996 2.84 1.83996 4.32 1.83996 5.88C1.83996 8.86 3.33996 11.5 5.65996 13C4.23996 13 2.91996 12.6 1.75996 12V12.06C1.75996 16.22 4.71996 19.7 8.63996 20.48C7.38141 20.8244 6.06015 20.8723 4.77996 20.62C5.32317 22.325 6.38703 23.8168 7.82199 24.8859C9.25695 25.9549 10.9909 26.5474 12.78 26.58C9.74722 28.9809 5.98795 30.2786 2.11996 30.26C1.43996 30.26 0.759956 30.22 0.0799561 30.14C3.87996 32.58 8.39996 34 13.24 34C29 34 37.66 20.92 37.66 9.58C37.66 9.2 37.66 8.84 37.64 8.46C39.32 7.26 40.76 5.74 41.92 4Z"
-                    fill="white"
-                  />
-                </svg>
-              </a>
+
               <a href="#" aria-label="Instagram">
                 <svg
                   width="21"
@@ -70,15 +56,12 @@ const Contact: React.FC = () => {
 
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4 md:gap-8">
             <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8 text-light-gray text-center md:text-left">
-              <h4 className="mb-2 md:mb-4">Legal</h4>
-              <h4 className="mb-2 md:mb-4">Privacy Notice</h4>
-              <h4 className="mb-2 md:mb-4">Site Terms</h4>
-              <h4 className="mb-2 md:mb-4">Cookie Policy</h4>
-              <h4 className="mb-2 md:mb-4">Security</h4>
-              <h4 className="mb-2 md:mb-4">Site Map</h4>
+              <h4 className="mb-2 md:mb-4">Home</h4>
+              <h4 className="mb-2 md:mb-4">Services</h4>
+              <h4 className="mb-2 md:mb-4">Gallery</h4>
             </div>
             <div className="text-center text-light-gray">
-              <p>© HyperDash 2023 All Rights Reserved</p>
+              <p>© influxo 2025 All Rights Reserved</p>
             </div>
           </div>
         </div>

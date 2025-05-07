@@ -59,7 +59,7 @@ const ProjectGallery = forwardRef<HTMLDivElement>((_, ref) => {
   };
   const handleWhatsAppRedirect = () => {
     // The phone number should be in international format without any special characters
-    const phoneNumber = "0650397387"; // French number format: +33 6 17 54 25 87
+    const phoneNumber = "33650397387"; // French number format: +33 6 17 54 25 87
     const message = encodeURIComponent(
       "Bonjour, je vous contacte depuis votre site web."
     );

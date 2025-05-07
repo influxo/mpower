@@ -118,7 +118,7 @@ const Home: React.FC = () => {
               </div>
             ))}
             {isMobile() && (
-              <div className="mb-8">
+              <div className="mb-8 pb-10 lg:pb-0 z-50">
                 <button
                   onClick={handleWhatsAppRedirect}
                   className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
@@ -146,7 +146,7 @@ const Home: React.FC = () => {
         <img
           src={bottom}
           alt="M-style Stripes"
-          className="absolute bottom-0 right-0"
+          className="absolute bottom-0 z-0 right-0"
         />
       </section>
 

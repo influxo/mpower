@@ -106,12 +106,9 @@ function Navbar() {
           </h1>
           <p className="text-base sm:w-full md:max-w-md mb-6">
             Chez Mpower, nous mettons notre expertise au service de votre
-            véhicule pour garantir un travail de qualité haut de gamme. Que vous
-            soyez un particulier, un professionnel ou une assurance, nous
-            prenons en charge toutes les marques et tous les types de véhicules
-            avec un seul objectif : vous offrir une prestation irréprochable.
+            véhicule pour garantir un travail de qualité haut de gamme.
           </p>
-          <MButton text="Order Now" onClick={() => handleButtonClick()} />
+          <MButton text="Contactez-nous" onClick={() => handleButtonClick()} />
         </div>
       </section>
     </div>

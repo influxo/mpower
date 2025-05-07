@@ -1,12 +1,10 @@
 import type React from "react";
 import { useState, useEffect } from "react";
-import boy from "../../assets/images/testimonial-boy.png";
-import girl from "../../assets/images/testimonial-girl.png";
 
 interface Testimonial {
   id: number;
   name: string;
-  image: string;
+
   rating: number;
   text: string;
 }
@@ -15,35 +13,35 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Philippe Dubost",
-    image: boy,
+
     rating: 5,
     text: "A team of conscientious and efficient professionals! After a front bumper collision, I was able to get a quick appointment. The boss is friendly and very attentive to his customers. The work is careful, the price announced and the deadlines are respected. Upon receipt, my vehicle had been washed. Really, I recommend 100%!",
   },
   {
     id: 2,
     name: "Arnaud Lacroix",
-    image: girl,
+
     rating: 5,
     text: "Very good bodywork, I highly recommend it for the quality of the work and the price, professional and clean work, also very warm welcome with a pleasant boss who knows his job very well. that's my personal experience in this garage, if you are in the area I recommend it without any worries.",
   },
   {
     id: 3,
     name: "Mathieu KOVACS -SQF WH-",
-    image: boy,
+
     rating: 5,
     text: "Very professional from A to Z. Quality work, attentive bodybuilder. Plus car cleaned! No questions to ask, you can go!",
   },
   {
     id: 4,
     name: "Faouzi Ajr",
-    image: boy,
+
     rating: 5,
     text: "Very professional bodybuilder, attentive & very friendly. The advice provided as well as the know-how of the employees exceeded my expectations. The end result is impeccable! I can only recommend. I will bring my second vehicle back to redo my front bumper.",
   },
   {
     id: 4,
     name: "Cindy Del-Valle",
-    image: girl,
+
     rating: 5,
     text: "A wonderful garage with a lot of humanity, quick support, and more than reliable repairs. I recommend 200%. Another big thank you to the garage for my car",
   },
@@ -118,15 +116,7 @@ const TestimonialsCarousel: React.FC = () => {
                 <div className="flex justify-center">
                   <div className="w-full md:w-2/3 px-4 transition-opacity duration-500 ease-in-out opacity-100">
                     <div className="relative border border-black rounded-lg p-8 pt-16 mt-12 shadow-lg">
-                      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
-                        <div className="w-24 h-24 rounded-full overflow-hidden border border-black shadow-md">
-                          <img
-                            src={currentTestimonial.image || "/placeholder.svg"}
-                            alt={currentTestimonial.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
+                      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10"></div>
 
                       <div className="text-7xl font-serif text-black absolute top-6 left-6">
                         "

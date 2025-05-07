@@ -16,6 +16,22 @@ import blueCar from "../assets/images/blue-car.png";
 import Contact from "../components/home/Contact";
 import Footer from "../components/global/Footer";
 import ProjectGallery from "../components/home/ProjectGallery";
+const handleWhatsAppRedirect = () => {
+  // The phone number should be in international format without any special characters
+  const phoneNumber = "0650397387"; // French number format: +33 6 17 54 25 87
+  const message = encodeURIComponent(
+    "Bonjour, je vous contacte depuis votre site web."
+  );
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  window.open(whatsappUrl, "_blank");
+};
+
+// Function to check if the device is mobile
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+};
 
 const Home: React.FC = () => {
   const handleButtonClick = () => {
@@ -101,10 +117,31 @@ const Home: React.FC = () => {
                 </div>
               </div>
             ))}
+            {isMobile() && (
+              <div className="mb-8">
+                <button
+                  onClick={handleWhatsAppRedirect}
+                  className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2M12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20M8.39 18.67C9.2 18.89 10.09 19 11 19C15.97 19 20 14.97 20 10C20 9.09 19.89 8.2 19.67 7.39L18.66 8.4C18.83 8.92 18.94 9.46 18.94 10C18.94 14.39 15.39 17.94 11 17.94C10.46 17.94 9.92 17.83 9.4 17.66L8.39 18.67M14.94 13.06L16.33 14.45C16.94 13.54 17.25 12.44 17.25 11.25C17.25 8.01 14.59 5.35 11.35 5.35C10.16 5.35 9.06 5.66 8.15 6.27L9.54 7.66C10.15 7.23 10.84 7 11.59 7C13.73 7 15.47 8.74 15.47 10.88C15.47 11.63 15.24 12.32 14.94 13.06Z" />
+                  </svg>
+                  Votre devis estimatif en 2 clics
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="my-8">
-            <MButton text="Order Now" onClick={() => handleButtonClick()} />
+            <MButton
+              text="Votre devis en 2 clics"
+              onClick={() => handleButtonClick()}
+            />
           </div>
         </div>
         <img
@@ -122,11 +159,8 @@ const Home: React.FC = () => {
               Nos services
             </h2>
             <p className="max-w-lg pb-12">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor
-              <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor
+              Votre carrosserie mérite l’excellence — nous mettons notre
+              expertise au service de chaque détail.
             </p>
           </div>
 
@@ -154,7 +188,10 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex justify-center">
-            <MButton text="Order Now" onClick={() => handleButtonClick()} />
+            <MButton
+              text="Contactez-nous"
+              onClick={() => handleButtonClick()}
+            />
           </div>
         </div>
       </section>
@@ -197,7 +234,10 @@ const Home: React.FC = () => {
                 pour la personnaliser à votre image, Mpower vous garantit un
                 travail de qualité, à la hauteur de vos exigences
               </p>
-              <MButton text="Order Now" onClick={() => handleButtonClick()} />
+              <MButton
+                text="Contactez-nous"
+                onClick={() => handleButtonClick()}
+              />
             </div>
           </div>
 
@@ -231,7 +271,10 @@ const Home: React.FC = () => {
               <p className="mt-2 mb-4 text-sm md:text-lg text-gray-200">
                 Prenez contact sans plus attendre !
               </p>
-              <MButton text="Contact Us" onClick={() => handleButtonClick()} />
+              <MButton
+                text="Contactez-nous"
+                onClick={() => handleButtonClick()}
+              />
             </div>
           </div>
         </div>

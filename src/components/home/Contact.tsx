@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
   // Add function to handle WhatsApp redirect
   const handleWhatsAppRedirect = () => {
     // The phone number should be in international format without any special characters
-    const phoneNumber = "33617542587"; // French number format: +33 6 17 54 25 87
+    const phoneNumber = "0650397387"; // French number format: +33 6 17 54 25 87
     const message = encodeURIComponent(
       "Bonjour, je vous contacte depuis votre site web."
     );
@@ -184,7 +184,7 @@ const Contact: React.FC = () => {
                   <ContactInfo
                     icon="location"
                     label="Adresse"
-                    text="123 Rue XYZ, France"
+                    text="39 boulevard Pré-Pommier, 38300 Bourgoin-Jallieu"
                   />
                   <ContactInfo
                     icon="clock"
@@ -208,7 +208,7 @@ const Contact: React.FC = () => {
                       >
                         <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2M12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20M8.39 18.67C9.2 18.89 10.09 19 11 19C15.97 19 20 14.97 20 10C20 9.09 19.89 8.2 19.67 7.39L18.66 8.4C18.83 8.92 18.94 9.46 18.94 10C18.94 14.39 15.39 17.94 11 17.94C10.46 17.94 9.92 17.83 9.4 17.66L8.39 18.67M14.94 13.06L16.33 14.45C16.94 13.54 17.25 12.44 17.25 11.25C17.25 8.01 14.59 5.35 11.35 5.35C10.16 5.35 9.06 5.66 8.15 6.27L9.54 7.66C10.15 7.23 10.84 7 11.59 7C13.73 7 15.47 8.74 15.47 10.88C15.47 11.63 15.24 12.32 14.94 13.06Z" />
                       </svg>
-                      Nous contacter sur WhatsApp
+                      Votre devis estimatif en 2 clics
                     </button>
                   </div>
                 )}

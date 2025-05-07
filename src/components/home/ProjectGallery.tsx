@@ -74,10 +74,10 @@ const ProjectGallery = forwardRef<HTMLDivElement>((_, ref) => {
     <div ref={ref} className="bg-white px-[4%] py-16 lg:py-28">
       <div className="text-center mb-12">
         <h5 className="font-semibold mb-4 text-xl text-[#171766]">
-          Nos Réalisations
+          Nos Réalisations Avant/Après
         </h5>
         <h1 className="text-5xl font-bold text-black leading-tight">
-          Avant / Après
+          Slidez de gauche à droite
         </h1>
       </div>
 

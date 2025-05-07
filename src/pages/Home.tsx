@@ -136,6 +136,12 @@ const Home: React.FC = () => {
               </div>
             )}
           </div>
+          <div className="hidden lg:block">
+            <MButton
+              text="Contactez-nous"
+              onClick={() => handleButtonClick()}
+            />
+          </div>
         </div>
         <img
           src={bottom}
@@ -152,7 +158,7 @@ const Home: React.FC = () => {
               Nos services
             </h2>
             <p className="max-w-lg pb-12">
-              Votre carrosserie mérite l’excellence — nous mettons notre
+              Votre carrosserie mérite l'excellence — nous mettons notre
               expertise au service de chaque détail.
             </p>
           </div>

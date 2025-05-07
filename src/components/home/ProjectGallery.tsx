@@ -166,7 +166,7 @@ const ProjectGallery = forwardRef<HTMLDivElement>((_, ref) => {
         )}
       </div>
       {isMobile() && (
-        <div className="mb-8 w-full flex justify-center py-10">
+        <div className="mb-8 w-full flex justify-center py-10 mt-10">
           <button
             onClick={handleWhatsAppRedirect}
             className="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"

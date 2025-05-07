@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import contact from "../../assets/images/contact.png";
+
 import topRight from "../../assets/images/top-right.png";
 import { MButton } from "../global";
 
@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
       <div className="flex justify-center items-center bg-dark-gray text-white">
         <section className="w-full ">
           <div className="flex flex-col md:flex-row md:gap-8">
-            <div className="md:w-1/2 h-[300px] md:h-full flex justify-center">
+            <div className="md:w-1/2  flex justify-center">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.1234567890123!2d5.273456789012345!3d45.58345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4c3c3c3c3c3c3%3A0x47f4c3c3c3c3c3c3!2s39%20Boulevard%20Pr%C3%A9-Pommier%2C%2038300%20Bourgoin-Jallieu!5e0!3m2!1sfr!2sfr!4v1234567890123!5m2!1sfr!2sfr"
                 width="100%"
@@ -161,7 +161,7 @@ const Contact: React.FC = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="shadow-lg h-full"
+                className=" shadow-lg h-full"
               ></iframe>
             </div>
 

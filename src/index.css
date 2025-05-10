@@ -4,16 +4,18 @@
 
 @layer utilities {
   @keyframes slide {
-    0% {
+    from {
       transform: translateX(0);
     }
-    100% {
-      transform: translateX(-50%);
+    to {
+      transform: translateX(calc(-100% / 3));
     }
   }
 
   .animate-slide {
-    animation: slide 20s linear infinite;
+    animation: slide 15s linear infinite;
+    width: max-content;
+    display: flex;
   }
 
   .scrollbar-hide::-webkit-scrollbar {

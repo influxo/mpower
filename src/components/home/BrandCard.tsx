@@ -47,22 +47,26 @@ const BrandsSection = () => {
             Les marques
           </h2>
 
-          <div className="hidden md:block overflow-hidden">
-            <div className="flex space-x-4 animate-slide">
-              {[...brands, ...brands].map((brand, index) => (
-                <div key={index} className="shrink-0">
+          <div className="hidden md:block overflow-hidden w-full relative">
+            <div className="flex animate-slide whitespace-nowrap">
+              {/* Double the brands to ensure seamless looping */}
+              {[...brands, ...brands, ...brands].map((brand, index) => (
+                <div key={index} className="inline-block mx-2">
                   <BrandCard {...brand} />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="md:hidden overflow-x-auto flex space-x-4 scrollbar-hide snap-x snap-mandatory scroll-smooth">
-            {brands.map((brand, index) => (
-              <div key={index} className="snap-center shrink-0 w-32">
-                <BrandCard {...brand} />
-              </div>
-            ))}
+          <div className="md:hidden overflow-hidden w-full relative">
+            <div className="flex animate-slide whitespace-nowrap">
+              {/* Double the brands to ensure seamless looping */}
+              {[...brands, ...brands, ...brands].map((brand, index) => (
+                <div key={index} className="inline-block mx-2 w-32">
+                  <BrandCard {...brand} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

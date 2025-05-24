@@ -2,12 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/images/bottom-left.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Mpower Auto - Carrossier d'excellence</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mpower Auto - Votre carrossier d'excellence. Services professionnels de carrosserie, peinture, débosselage sans peinture, réparation de jantes et personnalisation sur mesure pour tous types de véhicules incluant BMW, Mercedes, Audi et autres marques de luxe." />
+    <meta name="keywords" content="Mpower Auto, car repair, auto body shop, carrosserie, peinture auto, débosselage sans peinture, réparation jantes, personnalisation voiture, BMW repair, luxury car repair, réparation automobile, carrossier, atelier mécanique, paintless dent repair, wheel repair, custom car modification, high-end car service, service automobile haut de gamme, garage automobile, réparation carrosserie, auto repair shop, collision repair, réparation collision, car body shop, car customization" />
+    
+    <!-- Additional SEO Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Mpower Auto - Carrossier d'excellence" />
+    <meta property="og:description" content="Services professionnels de carrosserie, peinture, débosselage sans peinture, réparation de jantes et personnalisation sur mesure." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Language Meta Tags -->
+    <meta name="language" content="French, English" />
+    
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="FR" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Structured Data for Local Business (Auto Repair Shop) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoRepair",
+      "name": "Mpower Auto",
+      "description": "Carrossier d'excellence offrant des services de carrosserie, peinture, débosselage sans peinture, réparation de jantes et personnalisation sur mesure.",
+      "image": "/src/assets/logos/MPOWER_LOGO.png",
+      "priceRange": "€€-€€€",
+      "telephone": "+33000000000",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "serviceType": ["Car Body Repair", "Auto Painting", "Paintless Dent Repair", "Wheel Repair", "Car Customization"],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Carrosserie & Peinture"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Débosselage sans peinture"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Réparation de jantes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Personnalisation sur mesure"
+          }
+        }
+      ]
+    }
+    </script>
   </body>
 </html>

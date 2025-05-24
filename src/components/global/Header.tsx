@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import backgroundImage from "/images/gallery/Hero.jpeg";
 import MButton from "./MButton";
 import hamburger from "../../assets/images/hamburger-icon.svg";
+import logo from "../../assets/logos/MPOWER_LOGO.png";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
@@ -9,6 +10,14 @@ function Navbar() {
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMenuOpen])
 
   const handleButtonClick = () => {
     navigate("/");
@@ -39,7 +48,10 @@ function Navbar() {
   return (
     <div>
       <nav className="absolute top-0 left-0 right-0 z-20 py-8 text-white border-b border-gray-800">
-        <div className="flex items-center w-full">
+        <div className="flex items-center w-full py-5">
+          <div className="flex space-x-6 absolute md:ml-5 left-10">
+            <img src={logo} className="w-40 z-100 object-contain" alt="Mpower Auto Logo" />
+          </div>
           <div className="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
             <a href="/" className="hover:text-gray-300">
               Home
@@ -72,6 +84,7 @@ function Navbar() {
             ✕
           </button>
           <div className="flex flex-col items-center mt-20 space-y-6">
+          <img src={logo} className="w-40 z-100 object-contain" alt="Mpower Auto Logo" />
             <a href="/" className="text-lg" onClick={toggleMenu}>
               Home
             </a>
